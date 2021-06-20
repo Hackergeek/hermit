@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (!AccessbilityCore.isStart()) {
+        if (!AccessibilityCore.isStart()) {
             Toast toast = Toast.makeText(this,"请注意检查无障碍权限", Toast.LENGTH_SHORT);
             toast.show();
             try {

@@ -143,7 +143,7 @@ public class Router {
          * 点击操作, 通过无障碍的方式点击，安卓版本7.0及以上可用
          * @param：x,y坐标值
          * */
-        boolean actionResult = AccessbilityCore.clickByCoordinate(x, y);
+        boolean actionResult = AccessibilityCore.clickByCoordinate(x, y);
         JSONObject result = new JSONObject();
         if(actionResult){
             result.put("code", 0);
@@ -165,7 +165,7 @@ public class Router {
          * 滑动操作
          * @param：从（x1,y1）滑动到（x2, y2）
          * */
-        boolean actionResult = AccessbilityCore.swipeByCoordinate(x1, y1, x2, y2, 20);
+        boolean actionResult = AccessibilityCore.swipeByCoordinate(x1, y1, x2, y2, 20);
         JSONObject result = new JSONObject();
         if(actionResult){
             result.put("code", 0);
@@ -251,14 +251,14 @@ public class Router {
         JSONObject result = new JSONObject();
         result.put("code", 0);
         result.put("msg", "ok");
-        result.put("data", AccessbilityCore.countAttrNum("text", val));
+        result.put("data", AccessibilityCore.countAttrNum("text", val));
         return result.toJSONString();
     }
 
     @GetMapping("/click/text/{obj}")
     String clickByText(@PathVariable("obj") String textName) throws JSONException {
         JSONObject result = new JSONObject();
-        boolean r = AccessbilityCore.clickTextViewByText(textName, 999);
+        boolean r = AccessibilityCore.clickTextViewByText(textName, 999);
         if(r){
             result.put("code", 0);
             result.put("msg", "ok");
@@ -274,7 +274,7 @@ public class Router {
     String clickByText(@PathVariable("obj") String textName,
                        @PathVariable(value = "index", required = false, defaultValue = "999") int index) throws JSONException {
         JSONObject result = new JSONObject();
-        boolean r = AccessbilityCore.clickTextViewByText(textName, index);
+        boolean r = AccessibilityCore.clickTextViewByText(textName, index);
         if(r){
             result.put("code", 0);
             result.put("msg", "ok");
@@ -293,7 +293,7 @@ public class Router {
         JSONObject result = new JSONObject();
         result.put("code", 0);
         result.put("msg", "ok");
-        result.put("data", AccessbilityCore.countAttrNum("id", app+"/"+id));
+        result.put("data", AccessibilityCore.countAttrNum("id", app+"/"+id));
         return result.toString();
     }
 
@@ -303,7 +303,7 @@ public class Router {
                      @PathVariable("id") String id) throws JSONException {
         JSONObject result = new JSONObject();
         String viewID = app + "/" + id;
-        boolean r = AccessbilityCore.clickTextViewByID(viewID, 999);
+        boolean r = AccessibilityCore.clickTextViewByID(viewID, 999);
         if(r){
             result.put("code", 0);
             result.put("msg", "ok");
@@ -322,7 +322,7 @@ public class Router {
                      @PathVariable(value = "index", required = false, defaultValue = "999") int index) throws JSONException {
         JSONObject result = new JSONObject();
         String viewID = app + "/" + id;
-        boolean r = AccessbilityCore.clickTextViewByID(viewID, index);
+        boolean r = AccessibilityCore.clickTextViewByID(viewID, index);
         if(r){
             result.put("code", 0);
             result.put("msg", "ok");
@@ -337,7 +337,7 @@ public class Router {
     @GetMapping("/click/desc/{desc}")
     String clickByDesc(@PathVariable("desc") String desc) throws JSONException {
         JSONObject result = new JSONObject();
-        boolean r = AccessbilityCore.clickViewByDesc(desc);
+        boolean r = AccessibilityCore.clickViewByDesc(desc);
         if(r){
             result.put("code", 0);
             result.put("msg", "ok");
@@ -354,10 +354,10 @@ public class Router {
     String perAction(@PathVariable("obj") String obj) throws JSONException {
         JSONObject result = new JSONObject();
         int action = Utils.getActionType(obj);
-        if (action != 0 && AccessbilityCore.getmAccessibilityService() != null){
+        if (action != 0 && AccessibilityCore.getmAccessibilityService() != null){
             result.put("code", 0);
             result.put("msg", "ok");
-            AccessbilityCore.performAction(action);
+            AccessibilityCore.performAction(action);
         } else {
             result.put("code", -1);
             result.put("msg", "操作失败，请检查无障碍权限是否开启，指令是否正确");
@@ -372,18 +372,18 @@ public class Router {
         JSONObject result = new JSONObject();
         AccessibilityNodeInfo aNode = null;
         if(by.equals("id")){
-            aNode = AccessbilityCore.findViewByID(obj);
+            aNode = AccessibilityCore.findViewByID(obj);
         }else if(by.equals("text")){
-            aNode = AccessbilityCore.findViewByText(obj);
+            aNode = AccessibilityCore.findViewByText(obj);
         }else if(by.equals("desc")){
-            aNode = AccessbilityCore.findViewByDes(obj);
+            aNode = AccessibilityCore.findViewByDes(obj);
         }else {
             result.put("code", -1);
             result.put("msg", "请从id、text和desc中选一个");
             return result.toJSONString();
         }
 
-        AccessbilityCore.inputTextByNode(aNode, text);
+        AccessibilityCore.inputTextByNode(aNode, text);
         result.put("code", 0);
         result.put("msg", "操作成功");
         return result.toString();
@@ -420,7 +420,7 @@ public class Router {
         // 发送截屏指令
         System.out.println(t);
         try {
-            AccessbilityCore.ScreenShotByAB();
+            AccessibilityCore.ScreenShotByAB();
             Thread.sleep(t);
         } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();

@@ -30,9 +30,9 @@ import com.alibaba.fastjson.JSONException;
 
 import static android.view.Display.DEFAULT_DISPLAY;
 
-public class AccessbilityCore extends AccessibilityService {
+public class AccessibilityCore extends AccessibilityService {
     public static String TAG = "HermitOut";
-    public static AccessbilityCore aServer;
+    public static AccessibilityCore aServer;
     private static AccessibilityEvent mAccessibilityEvent = null;
     private static AccessibilityService mAccessibilityService = null;
     public static AccessibilityNodeInfo activeNodeInfo = null;
@@ -64,7 +64,7 @@ public class AccessbilityCore extends AccessibilityService {
     @Override
     public void onCreate() {
         super.onCreate();
-        AccessbilityCore.setAccessibilityService(this);
+        AccessibilityCore.setAccessibilityService(this);
     }
     /**
      * 设置数据
@@ -73,7 +73,7 @@ public class AccessbilityCore extends AccessibilityService {
      * @param
      */
     public static void setAccessibilityService(AccessibilityService service) {
-        synchronized (AccessbilityCore.class)
+        synchronized (AccessibilityCore.class)
         {
             if (service != null && mAccessibilityService == null)
             {
@@ -122,7 +122,7 @@ public class AccessbilityCore extends AccessibilityService {
         boolean res = false;
         if (nodeInfo == null)
         {
-            return res;
+            return false;
         }
         while (nodeInfo != null)
         {
@@ -192,7 +192,7 @@ public class AccessbilityCore extends AccessibilityService {
         AccessibilityNodeInfo accessibilityNodeInfo = activeNodeInfo;
         if (accessibilityNodeInfo == null)
         {
-            return res;
+            return false;
         }
         List<AccessibilityNodeInfo> nodeInfoList = accessibilityNodeInfo.findAccessibilityNodeInfosByText(text);
         if (nodeInfoList != null && !nodeInfoList.isEmpty())
@@ -225,7 +225,7 @@ public class AccessbilityCore extends AccessibilityService {
         AccessibilityNodeInfo accessibilityNodeInfo = activeNodeInfo;
         if (accessibilityNodeInfo == null)
         {
-            return res;
+            return false;
         }
         List<AccessibilityNodeInfo> nodeInfoList = accessibilityNodeInfo.findAccessibilityNodeInfosByViewId(id);
         if (nodeInfoList != null && !nodeInfoList.isEmpty())
@@ -254,7 +254,7 @@ public class AccessbilityCore extends AccessibilityService {
         boolean res = false;
         if (des == null || "".equals(des))
         {
-            return res;
+            return false;
         }
         List<AccessibilityNodeInfo> lists = listNodeInfo;
         for (AccessibilityNodeInfo node : lists)

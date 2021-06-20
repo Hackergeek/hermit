@@ -8,7 +8,6 @@ import java.util.List;
 
 /**
  * 应用执行shell命令
- * 看到了一个博主写的很好就直接拿过来了
  * 原文链接：https://www.cnblogs.com/zhujiabin/p/10495214.html
  * */
 public class ShellUtils {
@@ -39,7 +38,7 @@ public class ShellUtils {
      *
      * @param command
      *            command
-     * @param 运行是否需要root权限
+     * @param isRoot 运行是否需要root权限
      * @return
      * @see ShellUtils#execCommand(String[], boolean, boolean)
      */
@@ -53,7 +52,7 @@ public class ShellUtils {
      *
      * @param commands
      *            command list
-     * @param 运行是否需要root权限
+     * @param isRoot 运行是否需要root权限
      * @return
      * @see ShellUtils#execCommand(String[], boolean, boolean)
      */
@@ -70,7 +69,7 @@ public class ShellUtils {
      *
      * @param commands
      *            command array
-     * @param 运行是否需要root权限
+     * @param isRoot 运行是否需要root权限
      * @return
      * @see ShellUtils#execCommand(String[], boolean, boolean)
      */
@@ -84,7 +83,7 @@ public class ShellUtils {
      *
      * @param command
      *            command
-     * @param 运行是否需要root权限
+     * @param isRoot 运行是否需要root权限
      * @param isNeedResultMsg
      *            whether need result msg
      * @return
@@ -101,8 +100,8 @@ public class ShellUtils {
      *
      * @param commands
      *            command list
-     * @param 运行是否需要root权限
-     * @param 是否需要返回运行结果
+     * @param isRoot 运行是否需要root权限
+     * @param isNeedResultMsg 是否需要返回运行结果
      * @return
      * @see ShellUtils#execCommand(String[], boolean, boolean)
      */
@@ -119,8 +118,8 @@ public class ShellUtils {
      *
      * @param commands
      *            command array
-     * @param 运行是否需要root权限
-     * @param 是否需要返回运行结果
+     * @param isRoot 运行是否需要root权限
+     * @param isNeedResultMsg 是否需要返回运行结果
      * @return <ul>
      *         <li>if isNeedResultMsg is false, {@link CommandResult#successMsg}
      *         is null and {@link CommandResult#errorMsg} is null.</li>
